@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  url: MyString
+  page_rank: 1
+  origin_id: 1
+  added_person: MyString
+
+two:
+  title: MyString
+  url: MyString
+  page_rank: 1
+  origin_id: 1
+  added_person: MyString

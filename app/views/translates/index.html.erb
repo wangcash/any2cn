@@ -1,0 +1,23 @@
+<h1>Translates Management</h1>
+<table>
+<tr>
+	<th>Title</th>
+	<th>Origin ID</th>
+	<th>操作</th>
+</tr>
+
+<% @translates.each do |translate| %>
+<tr>
+	<td><%= link_to translate.title, translate_path(translate) %></td>
+	<td><%= link_to translate.origin_id, translate_path(translate) %></td>
+	<td>
+		<%= link_to "edit", edit_translate_path(translate) %>
+		<%= link_to "delete", translate_path(translate), :method=>:delete %>
+	</td>
+</tr>
+<% end %>
+
+</table>
+
+<%= paginate @translates %>
+<%= link_to "new translate", new_translate_path %>

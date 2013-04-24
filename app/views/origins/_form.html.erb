@@ -1,0 +1,13 @@
+<%= f.label :title, "title" %>
+<%= f.text_field :title %><br>
+
+<%= f.label :url, "url" %>
+<%= f.text_field :url %><br>
+
+<% if @origin.errors.any? %>
+<ul>
+  <% @origin.errors.full_messages.each do |msg| %>
+    <li><%=msg%></li>
+  <% end %>
+</ul>
+<% end %>

@@ -1,0 +1,19 @@
+<%= f.label :title, "title" %>
+<%= f.text_field :title %><br>
+
+<%= f.label :url, "url" %>
+<%= f.text_field :url %><br>
+
+<%= f.label :origin_id, "origin_id" %>
+<%= f.text_field :origin_id %><br>
+
+<%= f.label :page_rank, "page_rank" %>
+<%= f.text_field :page_rank %><br>
+
+<% if @translate.errors.any? %>
+<ul>
+  <% @translate.errors.full_messages.each do |msg| %>
+    <li><%=msg%></li>
+  <% end %>
+</ul>
+<% end %>

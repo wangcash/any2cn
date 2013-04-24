@@ -1,0 +1,21 @@
+<h1>Origins Management</h1>
+<table>
+<tr>
+	<th>Title</th>
+	<th>操作</th>
+</tr>
+
+<% @origins.each do |origin| %>
+<tr>
+	<td><%= link_to origin.title, origin_path(origin) %></td>
+	<td>
+		<%= link_to "edit", edit_origin_path(origin) %>
+		<%= link_to "delete", origin_path(origin), :method=>:delete %>
+	</td>
+</tr>
+<% end %>
+
+</table>
+
+<%= paginate @origins %>
+<%= link_to "new origin", new_origin_path %>

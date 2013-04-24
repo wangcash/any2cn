@@ -1,0 +1,4 @@
+<%= form_for @translate, :url=>translates_path do |f| %>
+	<%= render :partial=>"form", :locals=>{:f=>f} %>
+	<%= f.submit "Create" %>
+<% end %>
