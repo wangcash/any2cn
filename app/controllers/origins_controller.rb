@@ -13,6 +13,7 @@ class OriginsController < ApplicationController
 
 	def new
 		@origin = Origin.new
+		@origin.added_person = "system"
 	end
 
 	def create

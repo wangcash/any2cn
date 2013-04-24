@@ -1,14 +1,25 @@
-<%= f.label :title, "title" %>
-<%= f.text_field :title %><br>
-
-<%= f.label :url, "url" %>
-<%= f.text_field :url %><br>
-
-<%= f.label :origin_id, "origin_id" %>
-<%= f.text_field :origin_id %><br>
-
-<%= f.label :page_rank, "page_rank" %>
-<%= f.text_field :page_rank %><br>
+<table cellpadding="10">
+	<tr>
+		<td><%= f.label :title, "Title:" %></td>
+		<td><%= f.text_field :title, :size=>100 %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :url, "URL:" %></td>
+		<td><%= f.text_field :url, :size=>200 %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :page_rank, "Page Rank:" %></td>
+		<td><%= f.text_field :page_rank %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :origin_id, "Origin ID:" %></td>
+		<td><%= f.text_field :origin_id %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :added_person, "Person:" %></td>
+		<td><%= f.text_field :added_person %></td>
+	</tr>
+</table>
 
 <% if @translate.errors.any? %>
 <ul>

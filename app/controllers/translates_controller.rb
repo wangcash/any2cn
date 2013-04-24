@@ -13,6 +13,7 @@ class TranslatesController < ApplicationController
 
 	def new
 		@translate = Translate.new
+		@translate.added_person = "system"
 	end
 
 	def create
@@ -25,12 +26,7 @@ class TranslatesController < ApplicationController
 	end
 
 	def show
-		@page_title = @translate.title
-		respond_to do |format|
-			format.html {@page_title = @translate.title}
-			format.xml
-			format.json {render :json=>{title:@translate.title, url:@translate.url}.to_json}
-		end
+		@origin = Origin.find(@translate.origin_id) if @translate.origin_id.nil? == false
 	end
 
 	def edit

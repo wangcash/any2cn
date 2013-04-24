@@ -1,4 +1,4 @@
-<%= form_for @origin, :url=>origin_path(@origin), :method=>:put do |f| %>
+<%= form_for @translate, :url=>translate_path(@translate), :method=>:put do |f| %>
 	<%= render :partial=>"form", :locals=>{:f=>f} %>
 	<%= f.submit "修改" %>
 <% end %>

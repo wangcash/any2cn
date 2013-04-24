@@ -1,21 +1,29 @@
 <h1>Translates Management</h1>
-<table>
+<table border="1" cellpadding="10" cellspacing="0">
 <tr>
+	<th>ID</th>
 	<th>Title</th>
+	<th>Page Rank</th>
 	<th>Origin ID</th>
+	<th>Person</th>
 	<th>操作</th>
 </tr>
 
 <% @translates.each do |translate| %>
 <tr>
+	<td><%= translate.id %></td>
 	<td><%= link_to translate.title, translate_path(translate) %></td>
-	<td><%= link_to translate.origin_id, translate_path(translate) %></td>
+	<td><%= translate.page_rank %></td>
+	<td><%= translate.origin_id %></td>
+	<td><%= translate.added_person %></td>
 	<td>
 		<%= link_to "edit", edit_translate_path(translate) %>
 		<%= link_to "delete", translate_path(translate), :method=>:delete %>
 	</td>
 </tr>
 <% end %>
+
+
 
 </table>
 

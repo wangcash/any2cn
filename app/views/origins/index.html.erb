@@ -1,13 +1,21 @@
 <h1>Origins Management</h1>
-<table>
+<table border="1" cellpadding="10" cellspacing="0">
 <tr>
+	<th>ID</th>
 	<th>Title</th>
+	<th>Page Rank</th>
+	<th>Origin ID</th>
+	<th>Person</th>
 	<th>操作</th>
 </tr>
 
 <% @origins.each do |origin| %>
 <tr>
+	<td><%= origin.id %></td>
 	<td><%= link_to origin.title, origin_path(origin) %></td>
+	<td><%= origin.page_rank %></td>
+	<td><%= origin.origin_id %></td>
+	<td><%= origin.added_person %></td>
 	<td>
 		<%= link_to "edit", edit_origin_path(origin) %>
 		<%= link_to "delete", origin_path(origin), :method=>:delete %>
