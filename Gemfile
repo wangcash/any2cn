@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.13'
 
@@ -37,5 +37,6 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem "kaminari"
-gem "ruby-readability", :require => 'readability'
+gem 'kaminari'
+gem 'ruby-readability', :require => 'readability'
+gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'

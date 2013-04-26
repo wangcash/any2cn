@@ -1,5 +1,11 @@
+GIT
+  remote: git://github.com/AgilionApps/quiet_assets.git
+  revision: c42e29264a61a5431cc09282df597242c003ebe6
+  specs:
+    quiet_assets (0.0.1)
+
 GEM
-  remote: https://ruby.taobao.org/
+  remote: http://ruby.taobao.org/
   specs:
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
@@ -115,6 +121,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   kaminari
+  quiet_assets!
   rails (= 3.2.13)
   ruby-readability
   sass-rails (~> 3.2.3)
