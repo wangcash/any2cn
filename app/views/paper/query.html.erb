@@ -1,0 +1,9 @@
+<%= form_tag "/q" do %>
+	<%= text_field_tag "q", params[:q], :size=>120 %>
+	<%= submit_tag "搜索" %>
+<% end %>
+
+<h2><%= link_to @translate.title, @translate.url %></h2>
+<p><%= @translate.url %></p>
+
+<%= debug(params) %>
