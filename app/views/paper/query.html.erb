@@ -3,7 +3,11 @@
 	<%= submit_tag "搜索" %>
 <% end %>
 
-<h2><%= link_to @translate.title, @translate.url %></h2>
-<p><%= @translate.url %></p>
+<p>
+<h2><%= link_to @origin.title, @origin.url %></h2>
+<%= link_to @translate.title, @translate.url %>
+</p>
 
-<%= debug(params) %>
+<%= debug(@reprints) %>
+
+<%= debug(@translates) %>
