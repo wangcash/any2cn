@@ -1,9 +1,10 @@
 Any2cn::Application.routes.draw do
 
-  root :to => "paper#index"
-
   get  "q" => "paper#query"
   post "q" => "paper#query"
+
+  get  "s" => "search#search"
+  post "s" => "search#search"
 
   resources :origins
   resources :translates

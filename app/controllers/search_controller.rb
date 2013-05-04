@@ -1,12 +1,7 @@
+class SearchController < ApplicationController
 
-
-class PaperController < ApplicationController
-	def index
-		
-	end
-
-	def query
-		if isUrl(params[:q])
+	def search
+		if isUrl(params[:q])	#用户输入URL
 			url = params[:q]
 			@origin = Origin.where(["url=?", url]).first
 			# 找到原文
@@ -14,9 +9,23 @@ class PaperController < ApplicationController
 				oid = @origin.origin_id
 				@origin = Origin.find(oid)
 			end
-		else
+		else									#非URL则当作Title处理
 			title = params[:q]
-			@origin = Origin.where(["title=? and origin_id is null", title]).first
+
+			@origins = Origin.where(["upper(title)=upper(?) and origin_id is null", title])
+			puts "debug: #{@origins.empty?}"
+
+			if @origins.empty?
+				substrings = ""
+				title.split.each_with_index do |word, i|
+					substrings = "#{substrings} or upper(title) like upper('%#{word}%')"
+				end
+				puts substrings
+				@origins = Origin.where(["upper(title)=upper(?) #{substrings}", title])
+			end
+
+			@origin = @origins.first
+			# @origin = Origin.find(15)
 		end
 
 		if !@origin.nil?
@@ -35,5 +44,4 @@ class PaperController < ApplicationController
 		result = urlRegexp.match(string) ? true : false
 		return result
 	end
-
 end
