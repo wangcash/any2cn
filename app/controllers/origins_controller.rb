@@ -6,8 +6,8 @@ class OriginsController < ApplicationController
     @origins = Origin.page(params[:page]).per(50)
     respond_to do |format|
       format.html
-      format.xml  {render xml: @origins.to_xml}
-      format.json {render json: @origins.to_json}
+      format.xml  { render xml: @origins.to_xml }
+      format.json { render json: @origins.to_json }
     end
   end
 

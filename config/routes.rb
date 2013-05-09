@@ -1,10 +1,16 @@
 Any2cn::Application.routes.draw do
 
-  get  "q" => "paper#query"
-  post "q" => "paper#query"
+  # get  "q" => "paper#query"
+  # post "q" => "paper#query"
 
   get  "s" => "search#search"
   post "s" => "search#search"
+
+  get  "submit"   => "submit#new"
+  post "submit"   => "submit#new"
+
+  get  "submit/s" => "submit#create"
+  post "submit/s" => "submit#create"
 
   resources :origins
   resources :translates
