@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  include UtilModule
 
   def search
     if is_url(params[:q])  #用户输入URL
@@ -35,11 +36,5 @@ class SearchController < ApplicationController
 
   protected
 
-  # 判断string是否是url。
-  # 必须是http或https开头，现不支持直接填写网址方式。
-  def is_url(string)
-    urlRegexp = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
-    result = urlRegexp.match(string) ? true : false
-    return result
-  end
+
 end
