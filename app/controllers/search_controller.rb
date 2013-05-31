@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  include UtilModule
+  include UtilityModule
 
   def search
     if is_url(params[:q])  #用户输入URL
