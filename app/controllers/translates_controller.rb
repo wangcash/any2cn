@@ -26,8 +26,7 @@ class TranslatesController < ApplicationController
   end
 
   def show
-    # @origin = Origin.find(@translate.origin_id) if @translate.origin_id.nil? == false
-    @origin = @translate.origin.nil? ? nil : Origin.find(@translate.origin_id)
+    @origin = @translate.origin_id.nil? ? nil : Origin.find(@translate.origin_id)
   end
 
   def edit
