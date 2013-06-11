@@ -26,6 +26,8 @@ gem 'therubyracer'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails'
 
+gem 'mysql2'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -44,3 +46,6 @@ gem 'twitter-bootstrap-rails'
 gem 'kaminari'
 gem 'ruby-readability', :require => 'readability'
 gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'
+gem 'nokogiri'
+gem 'sanitize'
+gem 'diff-lcs'
