@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <!-- CSS -->
-    <link href="assets/application.css" rel="stylesheet" media="screen">
+    <link href="assets/application.css" rel="stylesheet">
     <style type="text/css">
       /* Sticky footer styles
 
@@ -30,7 +30,6 @@
       }
 
       /* Set the fixed height of the footer here */
-      #push,
       #footer {
         height: 60px;
       }
@@ -86,10 +85,9 @@
             <input type="submit" name="commit" class="btn" value="搜索" />
           </div>
         </form>
-        <p>发现一篇很cool的译文，<a href="/submit">立即分享</a>！</p>
+        <p>发现一篇很Cool的译文，<a href="#myModal" data-toggle="modal">立即分享</a>！</p>
       </div>
 
-      <div id="push"></div>
     </div>
 
     <div id="footer">
@@ -103,6 +101,51 @@
         </p>
       </div>
     </div>
+     
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Modal header</h3>
+      </div>
+      <div class="modal-body">
+        <div class="alert">
+          <strong>Warning!</strong> Best check yo self, you're not looking too good.
+        </div>
+        <form accept-charset="UTF-8" action="/submit/s" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="dzZ+DM1vc8ThjN7V2mhz+Z5J/3T6L744SJtE7bilcYo=" /></div>
+          <table cellpadding="10">
+            <tr>
+              <td><label for="submit_origin_title">Origin Title:</label></td>
+              <td><input id="submit_origin_title" name="submit[origin_title]" size="50" type="text" /></td>
+            </tr>
+            <tr>
+              <td><label for="submit_origin_url">Origin URL:</label></td>
+              <td><input id="submit_origin_url" name="submit[origin_url]" size="100" type="text" /></td>
+            </tr>
+            <tr>
+              <td><label for="submit_translate_title">Translate Title:</label></td>
+              <td><input id="submit_translate_title" name="submit[translate_title]" size="50" type="text" /></td>
+            </tr>
+            <tr>
+              <td><label for="submit_translate_url">Translate URL:</label></td>
+              <td><input id="submit_translate_url" name="submit[translate_url]" size="100" type="text" /></td>
+            </tr>
+            <tr>
+              <td><label for="submit_added_person">Person:</label></td>
+              <td><input id="submit_added_person" name="submit[added_person]" size="30" type="text" value="system" /></td>
+            </tr>
+          </table>
+
+          <input name="commit" type="submit" value="Create" />
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        <button class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+
 
   <script src="assets/application.js"></script>
   </body>
