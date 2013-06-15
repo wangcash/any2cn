@@ -16,3 +16,8 @@
 
 config/database.yml
 db/*.sqlite3
+app/controllers/origins_controller.rb
+app/controllers/translates_controller.rb
+app/helpers/translates_helper.rb
+app/helpers/origins_helper.rb
+
