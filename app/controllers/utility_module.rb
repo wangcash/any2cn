@@ -82,6 +82,13 @@ module UtilityModule
     return article_title
   end
 
+  # 从url的网页中解析出Title。
+  def title_from_url(url)
+    doc = Nokogiri::HTML(open(url))
+    html_title = doc.css('title').inner_html
+    return html_title
+  end
+
   module_function
   
 end
