@@ -3,54 +3,97 @@ class SearchController < ApplicationController
   include BingModule
 
   def search
-    if is_url(params[:q]) #用户输入URL
+
+    if is_url(params[:q]) # 用户输入URL
+
       url = params[:q]
-      @origin = Origin.where(["url=?", url]).first
 
-      # 找到原文
-      if @origin.origin_id != nil
-        oid = @origin.origin_id
-        @origin = Origin.find(oid)
-      end
-      
-      # 找到译文
-      unless @origin.nil?
-        @translates = translates_by_origin_id(@origin.id)
-      end
+      origins = origins_by_url(url)
 
-      # 返回译文列表
-      render :action => :translates
-      return
-    else #非URL则当作Title处理
+      if origins.empty? # 通过url不能搜索到Origins
+        
+        # 尝试通过网页的title进行搜索
+        article_title = article_title_from_url(url)
+        origins = origins_by_title(article_title)
+
+        if origins.empty? # 通过title也搜索不到Origin
+
+          # 根据url和title创建一个Origin
+          @origin = Origin.new
+          @origin.url = url
+          @origin.title = article_title
+          @origin.added_person = "SEARCH"
+          @origin.save
+
+        else # 可以通过title搜索到*原始*Origin
+
+          @origin = origins.first
+
+        end
+      else # 通过url可以搜索到Origins
+
+        @origin = origins.first
+
+        # 拿到*原始*Origin
+        @origin = origin_by_origin(@origin)
+
+      end
+    else # 非URL则当作Title处理
+
       title = params[:q]
 
-      # 查找完全匹配
-      # @origins = Origin.where(["upper(title)=upper(?) and origin_id is null", title])
+      # 搜索与title完全匹配的Origin
       @origins = origins_by_title(title)
 
-      # 分伺候按单词匹配
-      if @origins.empty?
+      if @origins.empty? # 没有搜索到任何Origins
+
+        # 将title进行分词后再次搜索
         @origins = origins_by_title_words(title)
         render :action => :origins
         return
-      elsif @origins.length == 1
+
+      elsif @origins.length == 1 # 搜索到唯一的Origin
+
         @origin = @origins.first
         @translates = translates_by_origin_id(@origin.id)
-        render :action => :translates
-        return
-      else
+
+      else # 搜索到多个Origins
+
         render :action => :origins
         return
+
       end
 
-      # 返回原文标题选择列表
-      render :action => :origins
     end
 
-    
+    # 搜索Translates
+    unless @origin.nil?
+      @translates = translates_by_origin_id(@origin.id)
+    end
+
+    render :action => :translates
+    return
+
   end
 
   protected
+
+  # 查找当前Origin是否有*原始*Origin
+  # 存在*原始*Origin时，返回*原始*Origin
+  # 不存在*原始*Origin时，返回当前Origin
+  def origin_by_origin(origin)
+    if origin.origin_id.nil?
+      o_origin = origin
+    else
+      o_origin = Origin.find(origin.origin_id)
+    end
+    return o_origin
+  end
+
+  # 通过url查找对应的Origins
+  def origins_by_url(url)
+    return Origin.where(["upper(url)=upper(?)", url])
+  end
 
   # 查找与Title完全匹配的*原始*Origins(忽略大小写)
   def origins_by_title(title)
