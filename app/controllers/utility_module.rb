@@ -14,6 +14,22 @@ module UtilityModule
     return result
   end
 
+  # 比较两个url是否完全相同
+  # 0  : 两个url相同
+  # -1 : 协议不同
+  # -2 : 主机名不同
+  # -3 : 端口不同
+  # -4 : 路径和参数不同
+  def compare_url(urla, urlb)
+    uria = URI(urla)
+    urib = URI(urlb)
+    return -1 if uria.scheme      != urib.scheme
+    return -2 if uria.host        != urib.host
+    return -3 if uria.port        != urib.port
+    return -4 if uria.request_uri != urib.request_uri
+    return 0
+  end
+
   # 计算两个string的相似系数。
   # string比较使用的是“最长公共子序列（LCS）”算法，返回值为lcs和长string的比值。
   # 返回值为0.0~1.0之间的浮点数。
