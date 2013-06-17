@@ -1,3 +1,3 @@
 class Origin < ActiveRecord::Base
-  attr_accessible :added_person, :origin_id, :page_rank, :title, :url
+  attr_accessible :title, :url, :page_rank, :origin_id, :heat, :favorite, :entry
 end

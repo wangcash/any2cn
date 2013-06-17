@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(:version => 20130422103757) do
     t.string   "url"
     t.integer  "page_rank"
     t.integer  "origin_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "added_person"
+    t.integer  "heat"
+    t.integer  "favorite"
+    t.string   "entry"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "translates", :force => true do |t|
@@ -28,9 +30,11 @@ ActiveRecord::Schema.define(:version => 20130422103757) do
     t.string   "url"
     t.integer  "page_rank"
     t.integer  "origin_id"
-    t.string   "added_person"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "heat"
+    t.integer  "favorite"
+    t.string   "sharer"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

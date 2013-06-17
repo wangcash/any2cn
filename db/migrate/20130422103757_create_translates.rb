@@ -5,7 +5,9 @@ class CreateTranslates < ActiveRecord::Migration
       t.string :url
       t.integer :page_rank
       t.integer :origin_id
-      t.string :added_person
+      t.integer :heat
+      t.integer :favorite
+      t.string :sharer
 
       t.timestamps
     end
