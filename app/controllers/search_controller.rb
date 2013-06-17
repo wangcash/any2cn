@@ -19,10 +19,12 @@ class SearchController < ApplicationController
         if origins.empty? # 通过title也搜索不到Origin
 
           # 根据url和title创建一个Origin
-          @origin = Origin.new
-          @origin.url = url
-          @origin.title = article_title
-          @origin.added_person = "SEARCH"
+          @origin          = Origin.new
+          @origin.url      = url
+          @origin.title    = article_title
+          @origin.heat     = 1
+          @origin.favorite = 1
+          @origin.entry    = "[SEARCH]"
           @origin.save
 
         else # 可以通过title搜索到*原始*Origin
