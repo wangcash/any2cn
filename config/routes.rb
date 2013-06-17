@@ -1,8 +1,5 @@
 Any2cn::Application.routes.draw do
 
-  # get  "q" => "paper#query"
-  # post "q" => "paper#query"
-
   get  "s" => "search#search"
   post "s" => "search#search"
 
