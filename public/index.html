@@ -85,7 +85,7 @@
             <input type="submit" name="commit" class="btn" value="搜索" />
           </div>
         </form>
-        <p>发现一篇很Cool的译文，<a href="#myModal" data-toggle="modal">立即分享</a>！</p>
+        <p>发现一篇很Cool的译文，<a href="#myModal" data-toggle="modal" id="share">立即分享</a>！</p>
       </div>
 
     </div>
@@ -106,48 +106,92 @@
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Modal header</h3>
+        <h3 id="myModalLabel">发布译文</h3>
       </div>
       <div class="modal-body">
-        <div class="alert">
-          <strong>Warning!</strong> Best check yo self, you're not looking too good.
-        </div>
-        <form accept-charset="UTF-8" action="/submit/s" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="dzZ+DM1vc8ThjN7V2mhz+Z5J/3T6L744SJtE7bilcYo=" /></div>
-          <table cellpadding="10">
-            <tr>
-              <td><label for="submit_origin_title">Origin Title:</label></td>
-              <td><input id="submit_origin_title" name="submit[origin_title]" size="50" type="text" /></td>
-            </tr>
-            <tr>
-              <td><label for="submit_origin_url">Origin URL:</label></td>
-              <td><input id="submit_origin_url" name="submit[origin_url]" size="100" type="text" /></td>
-            </tr>
-            <tr>
-              <td><label for="submit_translate_title">Translate Title:</label></td>
-              <td><input id="submit_translate_title" name="submit[translate_title]" size="50" type="text" /></td>
-            </tr>
-            <tr>
-              <td><label for="submit_translate_url">Translate URL:</label></td>
-              <td><input id="submit_translate_url" name="submit[translate_url]" size="100" type="text" /></td>
-            </tr>
-            <tr>
-              <td><label for="submit_added_person">Person:</label></td>
-              <td><input id="submit_added_person" name="submit[added_person]" size="30" type="text" value="system" /></td>
-            </tr>
-          </table>
-
-          <input name="commit" type="submit" value="Create" />
-        </form>
-
+        <div class="alert alert-error" id="alert" style="display:none;"></div>
+        <div id="form_div"></div>
       </div>
       <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-        <button class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        <button type="button" class="btn btn-success btn-signin" id="btn_submit" data-loading-text="提交中..." data-complete-text="完成!">确定</button>
       </div>
     </div>
 
 
   <script src="assets/application.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+
+    //立即分享
+    $("#share").click(function() {
+      $("#form_div").load("submit");
+    });
+
+    //发布译文
+    $("#btn_submit").click(function() {
+
+      $("#alert").slideUp("fast"); //关闭警告框
+
+      if($("#submit_origin_url").val() == '') {
+        $("#submit_origin_url").popover("show");
+        return
+      }
+
+      if($("#submit_origin_title").val() == '') {
+        $("#submit_origin_title").popover("show");
+        return
+      }
+
+      if($("#submit_translate_url").val() == '') {
+        $("#submit_translate_url").popover("show");
+        return
+      }
+
+      if($("#submit_translate_title").val() == '') {
+        $("#submit_translate_title").popover("show");
+        return
+      }
+
+      $("#btn_submit").button("loading");
+      
+      $.getJSON("/submit/s",
+      {
+        utf8                  :$("input[name='utf8']").val(),
+        authenticity_token    :$("input[name='authenticity_token']").val(),
+        submit_origin_url     :$("#submit_origin_url").val(),
+        submit_origin_title   :$("#submit_origin_title").val(),
+        submit_translate_url  :$("#submit_translate_url").val(),
+        submit_translate_title:$("#submit_translate_title").val(),
+        submit_sharer         :$("#submit_sharer").val(),
+        submit                :"submit"
+      },
+      function(data, status, xhr) {
+        if (status == "success") {
+          $("#btn_submit").button("complete");
+          if (data.errors == null) {
+            $("#alert").removeClass("alert-error");
+            $("#alert").addClass("alert-success");
+            $("#alert").html("发布成功！");
+            $("#alert").slideDown("fast");
+            //延时1.5秒后跳转到搜索结果
+            setTimeout(function(){location.href="s?q="+data.origin.url;},1500);
+          }
+          else {
+            $("#btn_submit").button("reset");
+            $("#alert").html("")
+            for (var i = 0; i < data.errors.length; i++) {
+              $("#alert").append(data.errors[i]+"<br>");
+            };
+            $("#alert").slideDown("fast");
+          }
+        }        
+      });
+
+    });
+
+  });
+  </script>
   </body>
 </html>
 

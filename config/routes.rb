@@ -6,8 +6,8 @@ Any2cn::Application.routes.draw do
   get  "submit"   => "submit#new"
   post "submit"   => "submit#new"
 
-  get  "submit/s" => "submit#create"
-  post "submit/s" => "submit#create"
+  get  "submit/s" => "submit#create_by_request"
+  post "submit/s" => "submit#create_by_form"
 
   resources :origins
   resources :translates

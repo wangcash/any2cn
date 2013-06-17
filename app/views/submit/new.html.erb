@@ -1,4 +1,28 @@
-<%= form_for :submit, url: { controller: :submit, action: :create } do |f| %>
+<%= form_for :submit, url:{ controller: :submit, action: :create_by_form }, html:{ id:"submit" } do |f| %>
   <%= render partial: "form", :locals => { :f => f } %>
-  <%= f.submit "Create" %>
 <% end %>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  $("#submit_origin_url").click(function() {
+    $("#submit_origin_url").popover("hide");
+    this.select();
+  });
+
+  $("#submit_origin_title").click(function() {
+    $("#submit_origin_title").popover("hide");
+    this.select();
+  });
+
+  $("#submit_translate_url").click(function() {
+    $("#submit_translate_url").popover("hide");
+    this.select();
+  });
+
+  $("#submit_translate_title").click(function() {
+    $("#submit_translate_title").popover("hide");
+    this.select();
+  });
+
+});
+</script>

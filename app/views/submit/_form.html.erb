@@ -1,36 +1,30 @@
 <table cellpadding="10">
 	<tr>
-		<td><%= f.label :origin_title, "Origin Title:" %></td>
-		<td><%= f.text_field :origin_title, size:50 %></td>
+		<td width="60px"><%= f.label :origin_url, "原文链接:" %></td>
+		<td>
+			<%= f.text_field :origin_url, value:@origin_url, size:50, "class"=>"input-xlarge", "data-trigger"=>"manual", "data-placement"=>"right", "data-content"=>"请填写原文链接。" %>
+		</td>
 	</tr>
 	<tr>
-		<td><%= f.label :origin_url, "Origin URL:" %></td>
-		<td><%= f.text_field :origin_url, size:100 %></td>
+		<td><%= f.label :origin_title, "原文标题:" %></td>
+		<td>
+			<%= f.text_field :origin_title, value:@origin_title, size:50, "class"=>"input-xlarge", "data-trigger"=>"manual", "data-placement"=>"right", "data-content"=>"请填写原文标题。" %>
+		</td>
 	</tr>
 	<tr>
-		<td><%= f.label :translate_title, "Translate Title:" %></td>
-		<td><%= f.text_field :translate_title, size:50 %></td>
+		<td><%= f.label :translate_url, "译文链接:" %></td>
+		<td>
+			<%= f.text_field :translate_url, value:@translate_url, size:50, "class"=>"input-xlarge", "data-trigger"=>"manual", "data-placement"=>"right", "data-content"=>"请填写译文链接。" %>
+		</td>
 	</tr>
 	<tr>
-		<td><%= f.label :translate_url, "Translate URL:" %></td>
-		<td><%= f.text_field :translate_url, size:100 %></td>
+		<td><%= f.label :translate_title, "译文标题:" %></td>
+		<td>
+			<%= f.text_field :translate_title, value:@translate_title, size:50, "class"=>"input-xlarge", "data-trigger"=>"manual", "data-placement"=>"right", "data-content"=>"请填写译文标题。" %>
+		</td>
 	</tr>
 	<tr>
-		<td><%= f.label :added_person, "Person:" %></td>
-		<td><%= f.text_field :added_person, value:@submitter %></td>
+		<td><%= f.label :sharer, "分享人:" %></td>
+		<td><%= f.text_field :sharer, value:@sharer %></td>
 	</tr>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
