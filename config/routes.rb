@@ -9,9 +9,6 @@ Any2cn::Application.routes.draw do
   get  "submit/s" => "submit#create_by_request"
   post "submit/s" => "submit#create_by_form"
 
-  resources :origins
-  resources :translates
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
