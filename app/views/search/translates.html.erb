@@ -21,7 +21,6 @@
 </style>
 <% end %>
 
-
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
@@ -37,7 +36,7 @@
           <li><a href="#about">关于</a></li>
         </ul>
         <form class="navbar-search" accept-charset="UTF-8" action="/s" method="post">
-          <input type="text" class="search-query" placeholder="文章标题或网址..." id="q" name="q">
+          <input type="text" class="search-query" placeholder="文章标题或网址..." id="q" name="q" value="<%= @input %>">
         </form>
 
         <form class="navbar-form pull-right">
@@ -76,3 +75,15 @@
     <p>&copy; Any2cn.com 2013</p>
   </div>
 </div>
+
+<% content_for :foot do %>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $("#q").mouseover(function() {
+      this.select();
+    });
+
+  });
+</script>
+<% end %>

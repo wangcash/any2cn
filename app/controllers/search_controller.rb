@@ -4,9 +4,11 @@ class SearchController < ApplicationController
 
   def search
 
-    if is_url(params[:q]) # 用户输入URL
+    @input = params[:q]
 
-      url = params[:q]
+    if is_url(@input) # 用户输入URL
+
+      url = @input
 
       origins = origins_by_url(url)
 
@@ -42,7 +44,7 @@ class SearchController < ApplicationController
       end
     else # 非URL则当作Title处理
 
-      title = params[:q]
+      title = @input
 
       # 搜索与title完全匹配的Origin
       @origins = origins_by_title(title)
