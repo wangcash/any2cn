@@ -21,7 +21,6 @@
 </style>
 <% end %>
 
-
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
@@ -41,7 +40,7 @@
         </form>
 
         <form class="navbar-form pull-right">
-          <a class="btn" href="javascript:alert('分享')">分享译文</a>
+          <a class="btn" href="#myModal" data-toggle="modal" id="share">分享译文</a>
         </form>
       </div><!--/.nav-collapse -->
     </div>
@@ -76,14 +75,30 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">发布译文</h3>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-error" id="alert" style="display:none;"></div>
+    <div id="form_div"></div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button type="button" class="btn btn-success btn-signin" id="btn_submit" data-loading-text="提交中..." data-complete-text="完成!">确定</button>
+  </div>
+</div>
+
 <% content_for :foot do %>
 <script type="text/javascript">
-  $(document).ready(function() {
+$(document).ready(function() {
 
-    $("#q").mouseover(function() {
-      this.select();
-    });
-
+  $("#q").mouseover(function() {
+    this.select();
   });
+
+});
 </script>
 <% end %>
